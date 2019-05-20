@@ -35,6 +35,13 @@ module Mathexpressions
     end
   end
 
+  class Minus < Expression
+    def operate(value)
+      value - @value.value
+    end
+  end
+
+
   class Times < Expression
     def operate(value)
        value * @value.value
@@ -68,5 +75,11 @@ module Mathexpressions
     end
   end
 
-
+  def minus(expression = nil)
+    if expression.operation?
+      expression.operate(expression.value)
+    else
+      Minus.new(expression)
+    end
+  end
 end

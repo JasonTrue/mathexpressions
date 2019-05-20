@@ -26,4 +26,10 @@ RSpec.describe Mathexpressions do
       expect(six(times(five))).to eq(30.0)
     end
   end
+
+  describe "Subtraction" do
+    it "subtracts 3 from 6" do
+      expect(six(minus(three))).to eq(3.0)
+    end
+  end
 end
