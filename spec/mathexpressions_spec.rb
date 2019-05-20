@@ -44,6 +44,5 @@ RSpec.describe Mathexpressions do
     it "divides 1 by 2" do
       expect(one(divided_by(two))).to eq(0.5)
     end
-
   end
 end

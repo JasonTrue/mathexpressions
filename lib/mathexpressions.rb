@@ -5,13 +5,13 @@ module Mathexpressions
 
   %i(zero one two three four five six seven eight nine)
     .each_with_index do |number_name, value|
-      define_method(number_name) do |expression = nil|
-        if expression
-          expression.operate(value)
-        else
-          Number.new(value.to_f)
-        end
+    define_method(number_name) do |expression = nil|
+      if expression
+        expression.operate(value)
+      else
+        Number.new(value.to_f)
       end
+    end
   end
 
   class Expression
@@ -25,7 +25,7 @@ module Mathexpressions
     end
 
     def operate(value)
-       throw NotImplementedError("Needs to be overriden")
+      throw NotImplementedError("Needs to be overriden")
     end
   end
 
@@ -41,10 +41,9 @@ module Mathexpressions
     end
   end
 
-
   class Times < Expression
     def operate(value)
-       value * @value.value
+      value * @value.value
     end
   end
 
@@ -66,7 +65,7 @@ module Mathexpressions
   end
 
   %w(Plus Minus Times DividedBy).each do |operation|
-    #shamelessly stolen from ActiveSupport (only the bits I need)
+    # shamelessly stolen from ActiveSupport (only the bits I need)
     underscore = operation.to_s.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2'.freeze)
     underscore.gsub!(/([a-z\d])([A-Z])/, '\1_\2'.freeze)
     underscore.downcase!
