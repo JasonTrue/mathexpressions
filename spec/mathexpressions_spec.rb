@@ -15,5 +15,9 @@ RSpec.describe Mathexpressions do
     it "Adds one plus two" do
       expect(one(plus(two))).to eq(3.0)
     end
+
+    it "Adds one plus nine" do
+      expect(one(plus(nine))).to eq(10.0)
+    end
   end
 end
