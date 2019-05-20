@@ -66,7 +66,7 @@ module Mathexpressions
 
   %w(Plus Minus Times DividedBy).each do |operation|
     # shamelessly stolen from ActiveSupport (only the bits I need)
-    underscore = operation.to_s.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2'.freeze)
+    underscore = operation.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2'.freeze)
     underscore.gsub!(/([a-z\d])([A-Z])/, '\1_\2'.freeze)
     underscore.downcase!
     operation_klass = Object.const_get("Mathexpressions::#{operation}")
