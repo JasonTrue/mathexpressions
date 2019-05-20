@@ -3,15 +3,15 @@ require "mathexpressions/version"
 module Mathexpressions
   class Error < StandardError; end
 
-  numbers = %i(zero one two three four five six seven eight nine)
-  numbers.each_with_index do |number_name, value|
-    define_method(number_name) do |expression = nil|
-      if expression
-        expression.operate(value)
-      else
-        Number.new(value)
+  %i(zero one two three four five six seven eight nine)
+    .each_with_index do |number_name, value|
+      define_method(number_name) do |expression = nil|
+        if expression
+          expression.operate(value)
+        else
+          Number.new(value)
+        end
       end
-    end
   end
 
   class Expression
@@ -64,7 +64,6 @@ module Mathexpressions
       @value = value
     end
   end
-
 
   def plus(expression = nil)
     if expression.operation?
