@@ -20,4 +20,10 @@ RSpec.describe Mathexpressions do
       expect(one(plus(nine))).to eq(10.0)
     end
   end
+
+  describe "Multiplication" do
+    it "multiplies six times five" do
+      expect(six(times(five))).to eq(30.0)
+    end
+  end
 end
