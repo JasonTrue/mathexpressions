@@ -9,7 +9,7 @@ module Mathexpressions
         if expression
           expression.operate(value)
         else
-          Number.new(value)
+          Number.new(value.to_f)
         end
       end
   end

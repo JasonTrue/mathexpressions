@@ -37,5 +37,13 @@ RSpec.describe Mathexpressions do
     it "divides 8 by 2" do
       expect(eight(divided_by(two))).to eq(4.0)
     end
+
+    # The specification is ambiguous about whether integer math is required
+    # or not, but I chose to make sure it works with floating point, just to
+    # be slightly less surprising.
+    it "divides 1 by 2" do
+      expect(one(divided_by(two))).to eq(0.5)
+    end
+
   end
 end
