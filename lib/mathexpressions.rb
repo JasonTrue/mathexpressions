@@ -65,35 +65,20 @@ module Mathexpressions
     end
   end
 
-  def plus(expression = nil)
-    if expression.operation?
-      expression.operate(expression.value)
-    else
-      Plus.new(expression)
-    end
-  end
+  %w(Plus Minus Times DividedBy).each do |operation|
+    #shamelessly stolen from ActiveSupport (only the bits I need)
+    underscore = operation.to_s.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2'.freeze)
+    underscore.gsub!(/([a-z\d])([A-Z])/, '\1_\2'.freeze)
+    underscore.downcase!
+    operation_klass = Object.const_get("Mathexpressions::#{operation}")
 
-  def times(expression = nil)
-    if expression.operation?
-      expression.operate(expression.value)
-    else
-      Times.new(expression)
-    end
-  end
-
-  def minus(expression = nil)
-    if expression.operation?
-      expression.operate(expression.value)
-    else
-      Minus.new(expression)
-    end
-  end
-
-  def divided_by(expression = nil)
-    if expression.operation?
-      expression.operate(expression.value)
-    else
-      DividedBy.new(expression)
+    underscore_sym = underscore.to_sym
+    define_method underscore_sym do |expression|
+      if expression.operation?
+        expression.operate(expression.value)
+      else
+        operation_klass.new(expression)
+      end
     end
   end
 end
