@@ -32,4 +32,10 @@ RSpec.describe Mathexpressions do
       expect(six(minus(three))).to eq(3.0)
     end
   end
+
+  describe "Division" do
+    it "divides 8 by 2" do
+      expect(eight(divided_by(two))).to eq(4.0)
+    end
+  end
 end

@@ -48,6 +48,12 @@ module Mathexpressions
     end
   end
 
+  class DividedBy < Expression
+    def operate(value)
+      value / @value.value
+    end
+  end
+
   class Number
     attr_reader :value
     def operation?
@@ -58,6 +64,7 @@ module Mathexpressions
       @value = value
     end
   end
+
 
   def plus(expression = nil)
     if expression.operation?
@@ -80,6 +87,14 @@ module Mathexpressions
       expression.operate(expression.value)
     else
       Minus.new(expression)
+    end
+  end
+
+  def divided_by(expression = nil)
+    if expression.operation?
+      expression.operate(expression.value)
+    else
+      DividedBy.new(expression)
     end
   end
 end
